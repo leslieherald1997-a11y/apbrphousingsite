@@ -352,7 +352,7 @@ window.APB_PROPERTIES = [
 		office: 0,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/3 West Mirror Drive.png"
+		"images/ 3 West Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -2691,4 +2691,5 @@ window.APB_PROPERTIES = [
 // Utility to add new properties at runtime (admin page)
 window.addApbProperty = function (property) {
     window.APB_PROPERTIES.push(property);
+
 };
