@@ -304,6 +304,23 @@ function prefillSearchFromQuery() {
         searchInput.value = decodeURIComponent(searchParam);
     }
 }
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const property = properties.find(p => p.id === id);
+
+if (property) {
+    const container = document.getElementById("property-details");
+    container.innerHTML = `
+        <h2>${property.name}</h2>
+        <img src="${property.images[0]}" alt="${property.name}">
+        <p>${property.longDescription}</p>
+        <p><strong>Price:</strong> $${property.price} APB Cash</p>
+        <p><strong>Bedrooms:</strong> ${property.bedrooms}</p>
+        <p><strong>Bathrooms:</strong> ${property.bathrooms}</p>
+        <p><strong>Parking:</strong> ${property.parking}</p>
+    `;
+}
 
 // ============================================================================
 //  MASTER INITIALIZER — RUNS ON EVERY PAGE
@@ -315,4 +332,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setupAdminForm();
     setupHomeSearchRedirect();
     prefillSearchFromQuery();
+
 });
