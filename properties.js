@@ -1902,7 +1902,7 @@ window.APB_PROPERTIES = [
         bathrooms: 1,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Apartment 206.png8",
+		"images/Apartment 206.png",
 		"images/outside right building.png",
 		"images/social area.png",
 		"images/lobby.png",
@@ -2693,6 +2693,7 @@ window.addApbProperty = function (property) {
     window.APB_PROPERTIES.push(property);
 
 };
+
 
 
 
