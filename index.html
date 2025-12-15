@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Points Bulletin Housing Market</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/properties.js"></script>
+    <script src="js/main.js" defer></script>
+
+    <style>
+        .search-section {
+            background: #151821;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid #262939;
+        }
+
+        .search-bar {
+            display: inline-flex;
+            gap: 10px;
+            max-width: 600px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #262939;
+            background: #0f1116;
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            background: #1e90ff;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background: #1877d3;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>All Points Bulletin <span>Housing Market</span></h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="listings.html">Listings</a>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <div class="hero-overlay">
+        <p class="hero-title">Find Your Next Home in San Andreas</p>
+        <p class="hero-sub">
+            Explore apartments, houses, and luxury estates — all available with in‑game APB cash.
+        </p>
+		<p class="hero-sub">
+            To Purchase one of these listed available properties please create a ticket in thee discord.
+        </p>
+		<a href="https://discord.gg/apbrp" class="discord-btn" target="_blank">
+    <span>Join Our Discord</span>
+</a>
+    </div>
+</div>
+
+<!-- SEARCH SECTION (Moved out of hero) -->
+<section class="search-section">
+    <div class="search-bar">
+        <input type="text" data-home-search placeholder="Search by name, area, or district...">
+        <button type="button" data-home-search-button>Search</button>
+    </div>
+</section>
+
+<!-- FEATURED PROPERTIES SECTION -->
+<div class="page-container">
+    <h2 style="margin-bottom:12px;">Featured Properties</h2>
+    <p style="color:#b0b0b0; font-size:13px; margin-bottom:18px;">
+        A quick look at some of the most popular homes available right now.
+    </p>
+
+    <div class="property-grid" id="featured-properties">
+        <!-- JS will insert 3 featured properties -->
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="listings.html"
+           style="padding:12px 22px; background:linear-gradient(135deg,#ff4b4b,#36a3ff);
+                  color:white; border-radius:6px; text-decoration:none; font-weight:700;
+                  letter-spacing:0.08em; text-transform:uppercase;">
+            View All Listings
+        </a>
+    </div>
+</div>
+
+<footer>
+    © 2025 All Points Bulletin Housing Market
+</footer>
+
+</body>
+</html>
