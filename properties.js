@@ -343,7 +343,7 @@ window.APB_PROPERTIES = [
     },
 		    	    {
         id: "ls-house-20",
-        name: "3 West Mirror Drive",
+        name: "3 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -352,7 +352,7 @@ window.APB_PROPERTIES = [
 		office: 0,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/3 West Mirror Drive.png"
+		"images/3 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -360,7 +360,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-21",
-        name: "4 West Mirror Drive",
+        name: "4 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -369,7 +369,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/4 West Mirror Drive.png"
+		"images/4 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -377,7 +377,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-22",
-        name: "7 West Mirror Drive",
+        name: "7 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -386,7 +386,7 @@ window.APB_PROPERTIES = [
 		office: 1,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/7 West Mirror Drive.png"
+		"images/7 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -394,7 +394,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-23",
-        name: "9 West Mirror Drive",
+        name: "9 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -403,7 +403,7 @@ window.APB_PROPERTIES = [
 		office: 0,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/9 West Mirror Drive.png"
+		"images/9 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -411,7 +411,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-24",
-        name: "10 West Mirror Drive",
+        name: "10 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -420,7 +420,7 @@ window.APB_PROPERTIES = [
 		office: 0,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/10 West Mirror Drive.png"
+		"images/10 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -428,7 +428,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-25",
-        name: "14 West Mirror Drive",
+        name: "14 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -437,7 +437,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/14 West Mirror Drive.png"
+		"images/14 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -445,7 +445,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-26",
-        name: "16 West Mirror Drive",
+        name: "16 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -454,7 +454,7 @@ window.APB_PROPERTIES = [
 		office: 0,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/16 West Mirror Drive.png"
+		"images/16 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -462,7 +462,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-27",
-        name: "18 West Mirror Drive",
+        name: "18 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -471,7 +471,7 @@ window.APB_PROPERTIES = [
 		office: 0,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/18 West Mirror Drive.png"
+		"images/18 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -479,7 +479,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-28",
-        name: "21 West Mirror Drive",
+        name: "21 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -488,7 +488,7 @@ window.APB_PROPERTIES = [
 		office: 1,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/21 West Mirror Drive.png"
+		"images/21 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -496,7 +496,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-29",
-        name: "24 West Mirror Drive",
+        name: "24 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -505,7 +505,7 @@ window.APB_PROPERTIES = [
 		office: 0,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/24 West Mirror Drive.png"
+		"images/24 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -513,7 +513,7 @@ window.APB_PROPERTIES = [
     },
 		    	    {
         id: "ls-house-30",
-        name: "28 West Mirror Drive",
+        name: "28 west Mirror Drive",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -522,7 +522,7 @@ window.APB_PROPERTIES = [
 		office: 1,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/28 West Mirror Drive.png"
+		"images/28 west Mirror Drive.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -2693,5 +2693,6 @@ window.addApbProperty = function (property) {
     window.APB_PROPERTIES.push(property);
 
 };
+
 
 
