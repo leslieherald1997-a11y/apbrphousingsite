@@ -173,7 +173,7 @@ window.APB_PROPERTIES = [
     },
 		    	    {
         id: "ls-house-10",
-        name: "101 Utopia Gardens",
+        name: "101 Utopia Garden",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -182,7 +182,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 101.png"
+		"images/utopia gardens 101.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -190,7 +190,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-11",
-        name: "102 Utopia Gardens",
+        name: "102 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -199,7 +199,7 @@ window.APB_PROPERTIES = [
 		office: 1,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 102.png"
+		"images/utopia gardens 102.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -207,7 +207,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house12",
-        name: "103 Utopia Gardens",
+        name: "103 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -216,7 +216,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 103.png"
+		"images/utopia gardens 103.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -224,7 +224,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-13",
-        name: "104 Utopia Gardens",
+        name: "104 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -233,7 +233,7 @@ window.APB_PROPERTIES = [
 		office: 1,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 104.png"
+		"images/utopia gardens 104.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -241,7 +241,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-14",
-        name: "105 Utopia Gardens",
+        name: "105 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -250,7 +250,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 105.png"
+		"images/utopia gardens 105.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -258,7 +258,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-15",
-        name: "106 Utopia Gardens",
+        name: "106 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -267,7 +267,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 106.png"
+		"images/utopia gardens 106.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -275,7 +275,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-16",
-        name: "107 Utopia Gardens",
+        name: "107 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -284,7 +284,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 107.png"
+		"images/utopia gardens 107.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -292,7 +292,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-17",
-        name: "108 Utopia Gardens",
+        name: "108 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -301,7 +301,7 @@ window.APB_PROPERTIES = [
 		office: 1,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 108.png"
+		"images/utopia gardens 108.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -309,7 +309,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-18",
-        name: "109 Utopia Gardens",
+        name: "109 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -318,7 +318,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 109.png"
+		"images/utopia gardens 109.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -326,7 +326,7 @@ window.APB_PROPERTIES = [
     },
 	    	    {
         id: "ls-house-19",
-        name: "110 Utopia Gardens",
+        name: "110 utopia gardens",
         price: 250000,
         area: "Los Santos",
         district: "Mirror Park",
@@ -335,7 +335,7 @@ window.APB_PROPERTIES = [
 		office: 2,
         parking: "1 Allocated Space in front of building",
         images: [
-		"images/Utopia Gardens 110.png"
+		"images/utopia gardens 110.png"
 		],
 		status: "available",
         shortDescription: "Modern high‑rise apartment overlooking central Los Santos.",
@@ -2693,6 +2693,7 @@ window.addApbProperty = function (property) {
     window.APB_PROPERTIES.push(property);
 
 };
+
 
 
 
