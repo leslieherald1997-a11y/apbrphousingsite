@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listings — All Points Bulletin Housing Market</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/properties.js"></script>
+    <script src="js/main.js" defer></script>
+
+    <style>
+        header {
+            padding: 24px 20px 12px;
+            background: #0f1116;
+            border-bottom: 1px solid #262939;
+            position: relative;
+            z-index: 10;
+        }
+
+        header h1 {
+            margin-bottom: 12px;
+            font-size: 22px;
+            color: #ffffff;
+        }
+
+        .search-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #151821;
+            border-bottom: 1px solid #262939;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .search-container input,
+        .search-container select,
+        .search-container button {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #262939;
+            background: #0f1116;
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
+        .search-container button {
+            background: #1e90ff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background: #1877d3;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>All Points Bulletin <span>Housing Market</span></h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="listings.html">Listings</a>
+    </nav>
+</header>
+
+<div class="search-container">
+    <input type="text" data-filter="search" placeholder="Search name, district, or area...">
+
+    <select data-filter="price">
+        <option value="any">Any Price</option>
+        <option value="under200">Under $200,000</option>
+        <option value="200to500">$200,000 - $500,000</option>
+        <option value="over500">Over $500,000</option>
+    </select>
+
+    <select data-filter="bedrooms">
+        <option value="any">Any Bedrooms</option>
+        <option value="1">1 Bedroom</option>
+        <option value="2">2 Bedrooms</option>
+        <option value="3plus">3+ Bedrooms</option>
+    </select>
+
+    <select data-filter="area">
+        <option value="any">Any Area</option>
+        <option value="Los Santos">Los Santos</option>
+        <option value="Blaine County">Blaine County</option>
+    </select>
+
+    <button type="button">Filter</button>
+</div>
+
+<div class="property-grid">
+    <!-- Cards are injected by JS -->
+</div>
+
+<footer>
+    © 2025 All Points Bulletin Housing Market
+</footer>
+
+</body>
+</html>
