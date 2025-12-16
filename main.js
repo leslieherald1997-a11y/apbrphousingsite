@@ -334,3 +334,40 @@ document.addEventListener("DOMContentLoaded", () => {
     prefillSearchFromQuery();
 
 });
+
+// -----------------------------
+// PROPERTY DETAILS PAGE LOGIC
+// -----------------------------
+if (window.location.pathname.includes("property.html")) {
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    const property = properties.find(p => p.id === id);
+
+    if (property) {
+        const container = document.getElementById("property-details");
+
+        container.innerHTML = `
+            <h2>${property.name}</h2>
+            <div class="price">${formatPrice(property.price)}</div>
+
+            <div class="property-meta">
+                <span><strong>Area:</strong> ${property.area}</span>
+                <span><strong>District:</strong> ${property.district}</span>
+                <span><strong>Bedrooms:</strong> ${property.bedrooms}</span>
+                <span><strong>Bathrooms:</strong> ${property.bathrooms}</span>
+                <span><strong>Office:</strong> ${property.office}</span>
+                <span><strong>Parking:</strong> ${property.parking}</span>
+            </div>
+
+            <p style="color:#b0b0b0;">${property.longDescription}</p>
+
+            <div class="property-gallery">
+                ${property.images.map(img => `
+                    <img src="${img}" alt="${property.name}">
+                `).join("")}
+            </div>
+        `;
+    }
+}
