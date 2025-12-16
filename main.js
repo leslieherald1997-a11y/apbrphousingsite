@@ -321,20 +321,6 @@ if (property) {
         <p><strong>Parking:</strong> ${property.parking}</p>
     `;
 }
-
-// ============================================================================
-//  MASTER INITIALIZER — RUNS ON EVERY PAGE
-// ============================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    renderFeatured();
-    setupListingFilters();
-    renderPropertyDetails();
-    setupAdminForm();
-    setupHomeSearchRedirect();
-    prefillSearchFromQuery();
-
-});
-
 // -----------------------------
 // PROPERTY DETAILS PAGE LOGIC
 // -----------------------------
@@ -371,3 +357,15 @@ if (window.location.pathname.includes("property.html")) {
         `;
     }
 }
+// ============================================================================
+//  MASTER INITIALIZER — RUNS ON EVERY PAGE
+// ============================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    renderFeatured();
+    setupListingFilters();
+    renderPropertyDetails();
+    setupAdminForm();
+    setupHomeSearchRedirect();
+    prefillSearchFromQuery();
+
+});
