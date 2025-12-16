@@ -1,286 +1,168 @@
 // ============================================================================
-// APB HOUSING — MAIN JS (MAP-FREE CLEAN VERSION)
+//  UTILITY FUNCTIONS
 // ============================================================================
-
-// ---------------------------------------------------------
-// UTILITY HELPERS
-// ---------------------------------------------------------
-function formatPrice(value) {
-    return "$" + value.toLocaleString() + " APB Cash";
+function getQueryParam(key) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(key);
 }
 
-function getQueryParam(name) {
-    const params = new URLSearchParams(window.location.search);
-    return params.get(name);
+function formatPrice(num) {
+    return `$${num.toLocaleString()} APB Cash`;
 }
 
 // ============================================================================
 //  FEATURED PROPERTIES (HOME PAGE)
 // ============================================================================
+function getRandomFeatured(count = 3) {
+    const shuffled = [...window.APB_PROPERTIES].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+}
+
 function renderFeatured() {
-    const container = document.getElementById("featured-properties");
-    if (!container || !window.APB_PROPERTIES) return;
+    const container = document.querySelector(".featured-grid");
+    if (!container) return;
 
     const featured = getRandomFeatured(3);
 
-    featured.forEach(p => {
-        const tagClass = p.area === "Los Santos" ? "ls" : "bc";
-
-        const card = document.createElement("a");
-        card.href = "property.html?id=" + encodeURIComponent(p.id);
-        card.className = "property-card";
-
-        card.innerHTML = `
-            <span class="property-tag ${tagClass}">${p.area}</span>
-            <img src="${p.images[0]}" alt="">
-            <div class="property-info">
-                <h3>${p.name}</h3>
-                <div class="price">$${p.price.toLocaleString()} APB Cash</div>
-<div class="details">
-    ${p.bedrooms} Bed • 
-    ${p.bathrooms} Bath • 
-    ${p.office ? `${p.office} Office${p.office > 1 ? 's' : ''} • ` : ""} 
-    ${p.district}
-</div>
-			${p.status === "sold" ? `<div class="status-badge sold">SOLD</div>` : ""}
-            ${p.status === "unavailable" ? `<div class="status-badge unavailable">Comming Soon!</div>` : ""}
-			${p.status === "available" ? `<div class="status-badge available">Available</div>` : ""}
-        `;
-
-        container.appendChild(card);
-    });
+    container.innerHTML = featured.map(p => `
+        <div class="featured-card">
+            <img src="${p.images[0]}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>${formatPrice(p.price)}</p>
+            <a href="property.html?id=${p.id}" class="btn">View</a>
+        </div>
+    `).join("");
 }
 
 // ============================================================================
-//  LISTINGS PAGE
+//  LISTINGS PAGE — FILTERS + RENDERING
 // ============================================================================
-function renderListings() {
-    const container = document.querySelector(".property-grid");
-    if (!container || !window.APB_PROPERTIES) return;
+function setupListingFilters() {
+    const grid = document.querySelector(".property-grid");
+    if (!grid) return;
 
     const searchInput = document.querySelector("[data-filter='search']");
-    const priceSelect = document.querySelector("[data-filter='price']");
-    const bedsSelect = document.querySelector("[data-filter='bedrooms']");
-    const areaSelect = document.querySelector("[data-filter='area']");
+    const priceFilter = document.querySelector("[data-filter='price']");
+    const bedroomFilter = document.querySelector("[data-filter='bedrooms']");
+    const areaFilter = document.querySelector("[data-filter='area']");
+    const filterButton = document.querySelector(".search-container button");
 
-    let filtered = [...window.APB_PROPERTIES];
+    function applyFilters() {
+        const term = searchInput.value.toLowerCase();
+        const price = priceFilter.value;
+        const beds = bedroomFilter.value;
+        const area = areaFilter.value;
 
-    // Search
-    const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : "";
-    if (searchTerm) {
-        filtered = filtered.filter(p =>
-            p.name.toLowerCase().includes(searchTerm) ||
-            p.district.toLowerCase().includes(searchTerm) ||
-            p.area.toLowerCase().includes(searchTerm)
-        );
-    }
+        const filtered = window.APB_PROPERTIES.filter(p => {
+            const matchesSearch =
+                p.name.toLowerCase().includes(term) ||
+                p.area.toLowerCase().includes(term) ||
+                p.district.toLowerCase().includes(term);
 
-    // Price filter
-    if (priceSelect && priceSelect.value !== "any") {
-        const val = priceSelect.value;
-        filtered = filtered.filter(p => {
-            if (val === "under200") return p.price < 200000;
-            if (val === "200to500") return p.price >= 200000 && p.price <= 500000;
-            if (val === "over500") return p.price > 500000;
-            return true;
+            const matchesPrice =
+                price === "any" ||
+                (price === "under200" && p.price < 200000) ||
+                (price === "200to500" && p.price >= 200000 && p.price <= 500000) ||
+                (price === "over500" && p.price > 500000);
+
+            const matchesBeds =
+                beds === "any" ||
+                (beds === "1" && p.bedrooms === 1) ||
+                (beds === "2" && p.bedrooms === 2) ||
+                (beds === "3plus" && p.bedrooms >= 3);
+
+            const matchesArea =
+                area === "any" || p.area === area;
+
+            return matchesSearch && matchesPrice && matchesBeds && matchesArea;
         });
+
+        renderListings(filtered);
     }
 
-    // Bedrooms
-    if (bedsSelect && bedsSelect.value !== "any") {
-        const val = bedsSelect.value;
-        filtered = filtered.filter(p => {
-            if (val === "1") return p.bedrooms === 1;
-            if (val === "2") return p.bedrooms === 2;
-            if (val === "3plus") return p.bedrooms >= 3;
-            return true;
-        });
-    }
+    filterButton.addEventListener("click", applyFilters);
+    searchInput.addEventListener("input", applyFilters);
 
-    // Area
-    if (areaSelect && areaSelect.value !== "any") {
-        filtered = filtered.filter(p => p.area === areaSelect.value);
-    }
+    renderListings(window.APB_PROPERTIES);
+}
 
-    // Render
-    container.innerHTML = "";
+function renderListings(list) {
+    const grid = document.querySelector(".property-grid");
+    if (!grid) return;
 
-    if (filtered.length === 0) {
-        container.innerHTML = "<p style='color:#b0b0b0;'>No properties match your filters.</p>";
-        return;
-    }
-
-filtered.forEach(p => {
-    const tagClass = p.area === "Los Santos" ? "ls" : "bc";
-
-    const card = document.createElement("a");
-    card.href = "property.html?id=" + encodeURIComponent(p.id);
-    card.className = "property-card";
-
-    card.innerHTML = `
-        <span class="property-tag ${tagClass}">${p.area}</span>
-        <img src="${p.images[0]}" alt="">
-        <div class="property-info">
+    grid.innerHTML = list.map(p => `
+        <div class="property-card">
+            <img src="${p.images[0]}" alt="${p.name}">
             <h3>${p.name}</h3>
-            <div class="price">${formatPrice(p.price)}</div>
-            <div class="details">${p.bedrooms} Bed • ${p.bathrooms} Bath • ${p.district}</div>
+            <p>${formatPrice(p.price)}</p>
+            <p>${p.bedrooms} Bed • ${p.bathrooms} Bath</p>
+            <a href="property.html?id=${p.id}" class="btn">View Details</a>
         </div>
-        ${p.status === "sold" ? `<div class="status-badge sold">SOLD</div>` : ""}
-        ${p.status === "unavailable" ? `<div class="status-badge unavailable">Comming Soon!</div>` : ""}
-        ${p.status === "available" ? `<div class="status-badge available">Available</div>` : ""}
+    `).join("");
+}
+
+// ============================================================================
+//  PROPERTY DETAILS PAGE — GALLERY + LIGHTBOX
+// ============================================================================
+function renderPropertyDetails() {
+    const wrapper = document.querySelector(".property-details");
+    if (!wrapper) return;
+
+    const id = getQueryParam("id");
+    const property = window.APB_PROPERTIES.find(p => p.id === id);
+    if (!property) return;
+
+    const tagClass = property.area === "Los Santos" ? "ls" : "bc";
+
+    const gallery = property.images
+        .map(img => `<img src="${img}" class="detail-image" data-full="${img}">`)
+        .join("");
+
+    wrapper.innerHTML = `
+        <div class="image-gallery">${gallery}</div>
+
+        <h2>${property.name}</h2>
+        <div class="price">${formatPrice(property.price)}</div>
+
+        <div class="property-meta">
+            <span><strong>Area:</strong> ${property.area}</span>
+            <span><strong>District:</strong> ${property.district}</span>
+            <span><strong>Bedrooms:</strong> ${property.bedrooms}</span>
+            <span><strong>Bathrooms:</strong> ${property.bathrooms}</span>
+            <span><strong>Office:</strong> ${property.office}</span>
+            <span><strong>Parking:</strong> ${property.parking}</span>
+        </div>
+
+        <p style="color:#b0b0b0;">${property.longDescription}</p>
+
+        <span class="detail-tag ${tagClass}">${property.area}</span>
     `;
 
-    container.appendChild(card);
-});
+    setupLightbox();
 }
 
-function setupListingFilters() {
-    const filters = document.querySelectorAll("[data-filter]");
-    if (!filters.length) return;
+function setupLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
 
-    filters.forEach(el => {
-        el.addEventListener("input", renderListings);
-        el.addEventListener("change", renderListings);
+    document.querySelectorAll(".detail-image").forEach(img => {
+        img.addEventListener("click", () => {
+            lightbox.classList.add("active");
+            lightboxImg.src = img.dataset.full;
+        });
     });
 
-    renderListings();
-}
+    lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+    });
 
-// ============================================================================
-//  PROPERTY DETAILS PAGE
-// ============================================================================
-function renderPropertyDetails() {
-    const wrapper = document.querySelector(".property-details");
-    if (!wrapper) return;
-function renderPropertyDetails() {
-    const wrapper = document.querySelector(".property-details");
-    if (!wrapper) return;
-
-    const id = getQueryParam("id");
-    const property = window.APB_PROPERTIES.find(p => p.id === id);
-
-    if (!property) return;
-
-    const tagClass = property.area === "Los Santos" ? "ls" : "bc";
-	
-const imageGallery = property.images
-    .map(img => `<img src="${img}" class="detail-image">`)
-    .join("");
-
-wrapper.innerHTML = `
-    <div class="image-gallery">
-        ${imageGallery}
-    </div>
-
-    <h2>${property.name}</h2>
-    <div class="price">${formatPrice(property.price)}</div>
-
-   <div class="property-meta">
-    <span><strong>Area:</strong> ${property.area}</span>
-    <span><strong>District:</strong> ${property.district}</span>
-    <span><strong>Bedrooms:</strong> ${property.bedrooms}</span>
-    <span><strong>Bathrooms:</strong> ${property.bathrooms}</span>
-    <span><strong>Office:</strong> ${property.office}</span>   <!-- NEW -->
-    <span><strong>Parking:</strong> ${property.parking}</span>
-</div>
-
-
-    <p style="color:#b0b0b0;">${property.longDescription}</p>
-
-    <span class="detail-tag ${tagClass}">
-        ${property.area}
-    </span>
-`;
-
-}
-function getRandomFeatured(count = 3) {
-    const shuffled = [...window.APB_PROPERTIES].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
-}
-function renderPropertyDetails() {
-    const wrapper = document.querySelector(".property-details");
-    if (!wrapper) return;
-
-    const id = getQueryParam("id");
-    const property = window.APB_PROPERTIES.find(p => p.id === id);
-
-    if (!property) return;
-
-    const tagClass = property.area === "Los Santos" ? "ls" : "bc";
-	
-const imageGallery = property.images
-    .map(img => `<img src="${img}" class="detail-image">`)
-    .join("");
-
-wrapper.innerHTML = `
-    <div class="image-gallery">
-        ${imageGallery}
-    </div>
-
-    <h2>${property.name}</h2>
-    <div class="price">${formatPrice(property.price)}</div>
-
-    <div class="property-meta">
-        <span><strong>Area:</strong> ${property.area}</span>
-        <span><strong>District:</strong> ${property.district}</span>
-        <span><strong>Bedrooms:</strong> ${property.bedrooms}</span>
-        <span><strong>Bathrooms:</strong> ${property.bathrooms}</span>
-		<span><strong>Office:</strong> ${property.office}</span> 
-        <span><strong>Parking:</strong> ${property.parking}</span>
-    </div>
-
-    <p style="color:#b0b0b0;">${property.longDescription}</p>
-
-    <span class="detail-tag ${tagClass}">
-        ${property.area}
-    </span>
-`;
-
-}
-function getRandomFeatured(count = 3) {
-    const shuffled = [...window.APB_PROPERTIES].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
-}
-
-    const id = getQueryParam("id");
-    const property = window.APB_PROPERTIES.find(p => p.id === id);
-
-    if (!property) return;
-
-    const tagClass = property.area === "Los Santos" ? "ls" : "bc";
-	
-const imageGallery = property.images
-    .map(img => `<img src="${img}" class="detail-image">`)
-    .join("");
-
-wrapper.innerHTML = `
-    <div class="image-gallery">
-        ${imageGallery}
-    </div>
-
-    <h2>${property.name}</h2>
-    <div class="price">${formatPrice(property.price)}</div>
-
-    <div class="property-meta">
-        <span><strong>Area:</strong> ${property.area}</span>
-        <span><strong>District:</strong> ${property.district}</span>
-        <span><strong>Bedrooms:</strong> ${property.bedrooms}</span>
-        <span><strong>Bathrooms:</strong> ${property.bathrooms}</span>
-		<span><strong>Office:</strong> ${property.office}</span> 
-        <span><strong>Parking:</strong> ${property.parking}</span>
-    </div>
-
-    <p style="color:#b0b0b0;">${property.longDescription}</p>
-
-    <span class="detail-tag ${tagClass}">
-        ${property.area}
-    </span>
-`;
-
-}
-function getRandomFeatured(count = 3) {
-    const shuffled = [...window.APB_PROPERTIES].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+            lightbox.classList.remove("active");
+            lightboxImg.src = "";
+        }
+    });
 }
 
 // ============================================================================
@@ -304,52 +186,14 @@ function prefillSearchFromQuery() {
         searchInput.value = decodeURIComponent(searchParam);
     }
 }
-// -----------------------------
-// PROPERTY DETAILS PAGE LOGIC
-// -----------------------------
-if (window.location.pathname.includes("property.html")) {
 
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    const property = properties.find(p => p.id === id);
-
-    if (property) {
-        const container = document.getElementById("property-details");
-
-        container.innerHTML = `
-            <h2>${property.name}</h2>
-            <div class="price">${formatPrice(property.price)}</div>
-
-            <div class="property-meta">
-                <span><strong>Area:</strong> ${property.area}</span>
-                <span><strong>District:</strong> ${property.district}</span>
-                <span><strong>Bedrooms:</strong> ${property.bedrooms}</span>
-                <span><strong>Bathrooms:</strong> ${property.bathrooms}</span>
-                <span><strong>Office:</strong> ${property.office}</span>
-                <span><strong>Parking:</strong> ${property.parking}</span>
-            </div>
-
-            <p style="color:#b0b0b0;">${property.longDescription}</p>
-
-            <div class="property-gallery">
-                ${property.images.map(img => `
-                    <img src="${img}" alt="${property.name}">
-                `).join("")}
-            </div>
-        `;
-    }
-}
 // ============================================================================
-//  MASTER INITIALIZER — RUNS ON EVERY PAGE
+//  MASTER INITIALIZER
 // ============================================================================
 document.addEventListener("DOMContentLoaded", () => {
     renderFeatured();
     setupListingFilters();
     renderPropertyDetails();
-    setupAdminForm();
     setupHomeSearchRedirect();
     prefillSearchFromQuery();
-
 });
-
