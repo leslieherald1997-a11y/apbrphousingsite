@@ -193,7 +193,17 @@ function prefillSearchFromQuery() {
 document.addEventListener("DOMContentLoaded", () => {
     renderFeatured();
     setupListingFilters();
-    renderPropertyDetails();
+    function waitForProperties(callback) {
+    if (window.APB_PROPERTIES && Array.isArray(window.APB_PROPERTIES)) {
+        callback();
+    } else {
+        setTimeout(() => waitForProperties(callback), 50);
+    }
+}
+
+waitForProperties(renderPropertyDetails);
+
     setupHomeSearchRedirect();
     prefillSearchFromQuery();
 });
+
